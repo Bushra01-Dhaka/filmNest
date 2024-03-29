@@ -9,7 +9,22 @@
   background-color: #171717;
   overflow: hidden;
   cursor: pointer;
+  color:white;
 }
+
+/* .cardBox1{
+  position: relative;
+  width: 300px;
+  height: 400px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #171717;
+  overflow: hidden;
+  cursor: pointer;
+  color:white;
+} */
 
 
 .cardBox:hover::before{
@@ -30,6 +45,24 @@
   border-radius: 16px;
 }
 
+/* .cardBox1::before{
+  content: '';
+  position: absolute;
+  width: 180px;
+  height: 140%;
+  background-color: #FE0000;
+  box-shadow: 0 0 10px rgb(8, 8, 8);
+  animation: animate 4s linear infinite;
+}
+
+.cardBox1::after{
+  content: '';
+  position: absolute;
+  inset: 10px;
+  background-color: black;
+  border-radius: 16px;
+} */
+
 @keyframes animate {
   0%{
     transform: rotate(0deg);
@@ -37,4 +70,9 @@
   100%{
     transform: rotate(360deg);
   }
+}
+
+.icons{
+  z-index: 1;
+  
 }
