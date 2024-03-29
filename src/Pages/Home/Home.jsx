@@ -1,9 +1,9 @@
 
-import "../../App.css"
+import Banner from "../../Component/NormalCompo/Banner";
 const Home = () => {
     return (
         <div>
-            <h1>Millions of movies, TV shows to discover. Explore Now.</h1>
+           <Banner></Banner>
         </div>
     );
 };
