@@ -4,7 +4,7 @@ import { IoIosColorFilter } from "react-icons/io";
 import { TbDiscountCheck } from "react-icons/tb";
 const Card = () => {
     return (
-        <div className="p-20 flex justify-evenly items-center gap-6">
+        <div className="p-20 flex flex-col lg:flex-row justify-evenly items-center gap-6">
            <div className="cardBox ">
               <div className="icons flex flex-col">
               <GiWorld className="text-8xl text-center text-white animate-bounce"></GiWorld>
