@@ -1,50 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MovieList from "./MovieList";
+import MovieListHeading from "./MovieListHeading";
+import SearchBox from "./SearchBox";
 
 const ShowMovies = () => {
 
-    const [movies, setMovies] = useState([{
-        "Title": "Star Wars: Episode IV - A New Hope",
-        "Year": "1977",
-        "imdbID": "tt0076759",
-        "Type": "movie",
-        "Poster": "https://m.media-amazon.com/images/M/MV5BOTA5NjhiOTAtZWM0ZC00MWNhLThiMzEtZDFkOTk2OTU1ZDJkXkEyXkFqcGdeQXVyMTA4NDI1NTQx._V1_SX300.jpg"
-    },
-    {
-        "Title": "Star Wars: Episode V - The Empire Strikes Back",
-        "Year": "1980",
-        "imdbID": "tt0080684",
-        "Type": "movie",
-        "Poster": "https://m.media-amazon.com/images/M/MV5BYmU1NDRjNDgtMzhiMi00NjZmLTg5NGItZDNiZjU5NTU4OTE0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
-    },
-    {
-        "Title": "Star Wars: Episode VI - Return of the Jedi",
-        "Year": "1983",
-        "imdbID": "tt0086190",
-        "Type": "movie",
-        "Poster": "https://m.media-amazon.com/images/M/MV5BOWZlMjFiYzgtMTUzNC00Y2IzLTk1NTMtZmNhMTczNTk0ODk1XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg"
-    },
-    {
-        "Title": "Star Wars: Episode VII - The Force Awakens",
-        "Year": "2015",
-        "imdbID": "tt2488496",
-        "Type": "movie",
-        "Poster": "https://m.media-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SX300.jpg"
-    },
-    {
-        "Title": "Star Wars: Episode I - The Phantom Menace",
-        "Year": "1999",
-        "imdbID": "tt0120915",
-        "Type": "movie",
-        "Poster": "https://m.media-amazon.com/images/M/MV5BYTRhNjcwNWQtMGJmMi00NmQyLWE2YzItODVmMTdjNWI0ZDA2XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg"
-    }]);
+    const [movies, setMovies] = useState([]);
+    const [searchBoxValue, setSearchBoxValue] = useState("");
+
+    const getMovieRequest = async (searchBoxValue) => {
+        const url = `http://www.omdbapi.com/?s=${searchBoxValue}&apikey=cbb1a5e8`;
+
+        const response = await fetch(url);
+        const responseData = await response.json();
+        console.log(responseData);
+
+        if(responseData.Search)
+        {
+            setMovies(responseData.Search);
+        }
+
+    }
+
+    useEffect(() => {
+       getMovieRequest(searchBoxValue);
+    }, [searchBoxValue])
 
     return (
         <div className="min-h-[100vh] py-20 bg-[#FE0000] container-fluid">
-            <h1 className="text-center text-4xl lg:text-6xl uppercase text-white font-bold">Streaming now</h1>
+            <div className="m-3 text-white flex flex-col md:flex-row justify-between items-center">
+                <div className="flex-1">
+                <MovieListHeading heading="Movies"></MovieListHeading>
+                 <p className="md:max-w-lg text-xl pt-6">Movies move us like nothing else can, whether they’re scary, funny, dramatic, romantic or anywhere in-between. So many titles, so much to experience.</p>
+                </div>
+                <div className="pt-6 md:pt-0">
+                   <SearchBox searchBoxValue={searchBoxValue}
+                   setSearchBoxValue={setSearchBoxValue}
+                   ></SearchBox>
+                </div>
+            </div>
 
            <div className="py-20">
-           <MovieList movies={movies}></MovieList>
+           <MovieList movies={movies}></MovieList> 
            </div>
         </div>
     );
