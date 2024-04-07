@@ -1,4 +1,13 @@
+import { Link } from "react-router-dom";
+
 const Drawer = () => {
+
+  const navItems = <>
+     <li><Link to="/">Home</Link></li>
+     <li><Link to="/movies">Movies</Link></li>
+     <li><Link>Dramas</Link></li>
+  </>
+
   return (
     <div className="drawer drawer-end">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -16,12 +25,7 @@ const Drawer = () => {
         ></label>
         <ul className="menu p-4 w-80 min-h-full bg-[#FE0000] text-white">
           {/* Sidebar content here */}
-          <li>
-            <a>Sidebar Item 1</a>
-          </li>
-          <li>
-            <a>Sidebar Item 2</a>
-          </li>
+          {navItems}
         </ul>
       </div>
     </div>

@@ -40,7 +40,7 @@ const ShowMovies = () => {
                 </div>
             </div>
 
-           <div className="py-20">
+           <div className="py-10">
            <MovieList movies={movies}></MovieList> 
            </div>
         </div>
